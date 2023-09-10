@@ -22,7 +22,7 @@ public class ExamenServiceImpl implements ExamenService {
     }
 
     @Override
-    public Examen put_actualizarExamne(Long examenId, Examen examen) throws Exception {
+    public Examen put_actualizarExamen(Long examenId, Examen examen) throws Exception {
         Optional<Examen> examenOptional = examenRepository.findById(examenId);
 
         if(!examenOptional.isPresent()){
