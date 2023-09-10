@@ -1,0 +1,8 @@
+.container-avatar{  
+    position: absolute;
+    /* border: gray 5px solid; */
+    width: 50px;
+    margin-left: 95%;
+    margin-top: -60px;
+    
+}
