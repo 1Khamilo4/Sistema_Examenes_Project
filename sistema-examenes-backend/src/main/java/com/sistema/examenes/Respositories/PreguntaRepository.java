@@ -8,5 +8,5 @@ import java.util.Set;
 
 public interface PreguntaRepository extends JpaRepository<Pregunta, Long> {
 
-    Set<Pregunta> findExamen(Examen examen);//Buscar preguntas de un examen
+    Set<Pregunta> findByExamen(Examen examen);//Buscar preguntas de un examen
 }
