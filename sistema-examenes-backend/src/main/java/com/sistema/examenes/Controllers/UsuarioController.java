@@ -37,17 +37,22 @@ public class UsuarioController {
         return usuarioService.post_guardarUsuario(usuario,usuarioRoles);
     }
 
+    @PutMapping("/{usuario_id}")
+    public Usuario actualizarUsuario(@PathVariable("usuario_id") Long usuario_id, @RequestBody Usuario usuario) throws Exception{
+        return usuarioService.put_actualizarUsuario(usuario_id, usuario);
+    }
+
     @GetMapping("/")
     public ResponseEntity<?> obtenerUsuarios(){
         return ResponseEntity.ok(usuarioService.get_obtenerUsuarios());
     }
 
     @GetMapping("/{username}")
-    public Usuario obtenerUsuario(@PathVariable("username") String username){
+    public Usuario obtenerUsuarioByUsername(@PathVariable("username") String username){
         return usuarioService.get_obtenerUsuarioByUserName(username);
     }
     @GetMapping("/{user_id}")
-    public Usuario obtenerUsuario(@PathVariable("user_id") Long user_id) throws Exception{
+    public Usuario obtenerUsuarioById(@PathVariable("user_id") Long user_id) throws Exception{
         return usuarioService.get_obtenerUsuarioById(user_id);
     }
 

@@ -53,6 +53,11 @@ public class PreguntaController {
 
     }
 
+    @GetMapping("/")
+    public ResponseEntity<?> get_listarPregunta(){
+        return  ResponseEntity.ok(preguntaService.get_obtenerPreguntas());
+    }
+
     @GetMapping("/{preguntaId}")
     public Pregunta get_listarPreguntaById(@PathVariable("preguntaId") Long preguntaId) throws Exception{
         return preguntaService.get_obtenerPregunta(preguntaId);

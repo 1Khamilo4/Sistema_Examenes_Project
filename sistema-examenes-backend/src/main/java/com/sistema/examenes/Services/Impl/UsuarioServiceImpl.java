@@ -43,6 +43,23 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
+    public Usuario put_actualizarUsuario(Long user_id, Usuario usuario) throws Exception{
+
+        Optional<Usuario> usuarioOptional = usuarioRepository.findById(user_id);
+
+        if(!usuarioOptional.isPresent()){
+            throw new Exception("No existe Usuario");
+        }
+
+        usuario.setUsername(usuarioOptional.get().getUsername());
+        usuario.setId(usuarioOptional.get().getId());
+
+        return usuarioRepository.save(usuario);
+
+
+    }
+
+    @Override
     public Usuario get_obtenerUsuarioById(Long username_id) throws Exception{
 
         Optional<Usuario> usuario = usuarioRepository.findById(username_id);
