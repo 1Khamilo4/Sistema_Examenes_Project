@@ -17,9 +17,18 @@ import { UsuariosComponent } from './pages/usuarios/usuarios.component';
 
 /* Avatar */
 import { AvatarModule } from 'ngx-avatars';
+
+//Tablas : Modificamos el archivo 'app.module.ts' donde debemos importar MatTableModule, MatPaginatorModule, BrowserAnimationsModule:
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatInputModule } from '@angular/material/input';
+import {MatSortModule} from '@angular/material/sort';
+
 import { CategoriasComponent } from './pages/categorias/categorias.component';
 import { ExamenesComponent } from './pages/examenes/examenes.component';
 import { PreguntasComponent } from './pages/preguntas/preguntas.component';
+import { IconUserComponent } from './components/icon-user/icon-user.component';
+
 
 @NgModule({
   declarations: [
@@ -28,7 +37,9 @@ import { PreguntasComponent } from './pages/preguntas/preguntas.component';
     UsuariosComponent,
     CategoriasComponent,
     ExamenesComponent,
-    PreguntasComponent
+    PreguntasComponent,
+    IconUserComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -40,7 +51,11 @@ import { PreguntasComponent } from './pages/preguntas/preguntas.component';
     MatIconModule,
     MatListModule,
     AvatarModule,
-    HttpClientModule
+    HttpClientModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatInputModule,
+    MatSortModule
   ],
   providers: [],
   bootstrap: [AppComponent]

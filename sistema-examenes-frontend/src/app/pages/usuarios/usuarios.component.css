@@ -1,8 +1,12 @@
-.container-avatar{  
-    position: absolute;
-    /* border: gray 5px solid; */
-    width: 50px;
-    margin-left: 95%;
-    margin-top: -60px;
-    
-}
+table {
+    width: 100%;
+  }
+  
+  .mat-mdc-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+  
+  td, th {
+    width: 25%;
+  }
