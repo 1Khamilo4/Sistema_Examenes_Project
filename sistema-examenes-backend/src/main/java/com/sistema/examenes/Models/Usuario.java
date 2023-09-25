@@ -27,6 +27,10 @@ public class Usuario {
     @JsonIgnore
     private Set<UsuarioRol> usuarioRoles = new HashSet<>();
 
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY,mappedBy = "usuario")
+    @JsonIgnore
+    private Set<Categoria> categorias = new HashSet<>();
+
     public Usuario(){
 
     }
@@ -124,4 +128,11 @@ public class Usuario {
         this.usuarioRoles = usuarioRoles;
     }
 
+    public Set<Categoria> getCategorias() {
+        return categorias;
+    }
+
+    public void setCategorias(Set<Categoria> categorias) {
+        this.categorias = categorias;
+    }
 }

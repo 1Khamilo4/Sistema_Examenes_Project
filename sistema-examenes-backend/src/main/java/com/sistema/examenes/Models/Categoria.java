@@ -20,6 +20,9 @@ public class Categoria {
     @JsonIgnore
     private Set<Examen> examenes = new LinkedHashSet<>();
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Usuario usuario;
+
     public Categoria(){
 
     }
@@ -55,4 +58,11 @@ public class Categoria {
         this.examenes = examenes;
     }
 
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
 }

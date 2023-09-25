@@ -16,7 +16,7 @@ public class Pregunta {
     private String opcion1;
     private String opcion2;
     private String opcion3;
-    private String opcion4;
+
     private String respuesta;
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -73,15 +73,7 @@ public class Pregunta {
         this.opcion3 = opcion3;
     }
 
-    public String getOpcion4() {
-        return opcion4;
-    }
-
-    public void setOpcion4(String opcion4) {
-        this.opcion4 = opcion4;
-    }
-
-    public String getRespuesta() {
+   public String getRespuesta() {
         return respuesta;
     }
 
