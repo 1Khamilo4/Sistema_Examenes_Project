@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap');
 table {
     width: 100%;
   }
@@ -9,4 +10,33 @@ table {
   
   td, th {
     width: 25%;
+  }
+
+  .btnEditar{
+    display: inline;
+    margin-left: -13px; 
+    color: purple;
+  }
+  
+  .btnEliminar{
+    display: inline;
+    margin-left: 39px;
+    color: red;
+  }
+
+  .editar{
+    color: purple;
+  }
+  .eliminar{
+    color: red;
+  }
+
+  .texto-tabla{  
+    position: absolute;
+    margin-left: 86%;
+    margin-top: -60px;
+  }
+  .letter{
+    font-family: 'Kaushan Script', cursive;
+    font-size: 210%;
   }

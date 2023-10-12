@@ -12,6 +12,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
+import {MatCardModule} from '@angular/material/card';
+
 
 import { UsuariosComponent } from './pages/usuarios/usuarios.component';
 
@@ -24,11 +26,21 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatInputModule } from '@angular/material/input';
 import {MatSortModule} from '@angular/material/sort';
 
+//Declaraciones componentes 
 import { CategoriasComponent } from './pages/categorias/categorias.component';
 import { ExamenesComponent } from './pages/examenes/examenes.component';
 import { PreguntasComponent } from './pages/preguntas/preguntas.component';
 import { IconUserComponent } from './components/icon-user/icon-user.component';
+import { FormCategoriasComponent } from './components/forms/form-categorias/form-categorias.component';
+import { FormExamenesComponent } from './components/forms/form-examenes/form-examenes.component';
+import { FormPreguntasComponent } from './components/forms/form-preguntas/form-preguntas.component';
+import { FormUsuariosComponent } from './components/forms/form-usuarios/form-usuarios.component';
 
+//Forms
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+/* Dialog */
+import {MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -39,6 +51,10 @@ import { IconUserComponent } from './components/icon-user/icon-user.component';
     ExamenesComponent,
     PreguntasComponent,
     IconUserComponent,
+    FormCategoriasComponent,
+    FormExamenesComponent,
+    FormPreguntasComponent,
+    FormUsuariosComponent,
     
   ],
   imports: [
@@ -55,7 +71,11 @@ import { IconUserComponent } from './components/icon-user/icon-user.component';
     MatTableModule,
     MatPaginatorModule,
     MatInputModule,
-    MatSortModule
+    MatSortModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatCardModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -5,10 +5,15 @@
       [opened]="(isHandset$ | async) === false">
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item href="/usuarios">Usuarios</a>
-      <a mat-list-item href="/categorias">Categorias</a>
-      <a mat-list-item href="/examenes">Examenes</a>
-      <a mat-list-item href="/preguntas">Preguntas</a>
+      <h3><strong>Tablas</strong></h3>
+      
+      <a mat-list-item href="/usuarios"><span class="material-symbols-outlined">group</span> Usuarios</a>
+      <a mat-list-item href="/categorias"> <span class="material-symbols-outlined">category</span> Categorias</a>
+      <a mat-list-item href="/examenes"> <span class="material-symbols-outlined">list_alt</span> Examenes</a>
+      <a mat-list-item href="/preguntas"> <span class="material-symbols-outlined">help_center</span> Preguntas</a>
+
+      
+      
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -25,5 +30,6 @@
     </mat-toolbar>
     <!-- Add Content Here -->
     <router-outlet></router-outlet>
+   
   </mat-sidenav-content>
 </mat-sidenav-container>

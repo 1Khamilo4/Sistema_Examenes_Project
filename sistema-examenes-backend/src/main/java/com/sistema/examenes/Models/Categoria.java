@@ -1,6 +1,7 @@
 package com.sistema.examenes.Models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.data.jpa.repository.Query;
 
 import javax.persistence.*;
 import java.util.LinkedHashSet;
@@ -18,6 +19,7 @@ public class Categoria {
 
     @OneToMany( mappedBy = "categoria", cascade = CascadeType.ALL)
     @JsonIgnore
+    //@Query("SELECT use from Useres fetch join use.profiles where user.id = use.idusuario = (?1)")
     private Set<Examen> examenes = new LinkedHashSet<>();
 
     @ManyToOne(fetch = FetchType.EAGER)

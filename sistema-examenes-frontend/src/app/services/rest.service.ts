@@ -18,7 +18,7 @@ export class RestService {
 
     await this.api.get(this.url+controller).toPromise().then((data)=>{
         result = data;
-    })
+    });
     
     return result;
     

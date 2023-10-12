@@ -4,6 +4,8 @@ import { RestService } from 'src/app/services/rest.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, MatSortModule } from '@angular/material/sort';
+import { MatDialog } from '@angular/material/dialog';
+import { FormUsuariosComponent } from 'src/app/components/forms/form-usuarios/form-usuarios.component';
 
 @Component({
   selector: 'app-usuarios',
@@ -18,7 +20,7 @@ export class UsuariosComponent implements OnInit, AfterViewInit{
   @ViewChild(MatSort) sort: MatSort;
   dataSource : MatTableDataSource<any>;/**Se instancia el dataSource para poder guardar los datos json que se traen desde la peticion GET*/
 
-  constructor(public api:RestService){
+  constructor(public api:RestService, public dialog: MatDialog ){
     this.dataSource = new MatTableDataSource();
   }  
   
@@ -50,14 +52,7 @@ export class UsuariosComponent implements OnInit, AfterViewInit{
         console.log(res);
       }else{
         throw new Error("No hay datos")
-      }
-
-      /* for(let i = 0; i < res.length; i++ ){//Se itera sobre el objeto que resivimos en el servicio get
-
-          this.loadTable( [res[i]] );
-
-      } */
-
+      }    
       
         
     })
@@ -102,6 +97,7 @@ export class UsuariosComponent implements OnInit, AfterViewInit{
 
     /* this.displayedColumns.push([data]); */
     console.log(this.displayedColumns);
+    this.displayedColumns.push("acciones")
     
   }
 
@@ -112,6 +108,23 @@ export class UsuariosComponent implements OnInit, AfterViewInit{
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  btnEditar(){
+    alert("Btn de editar");
+    return false;
+  }
+  btnEliminar(){
+    alert("Btn de Eliminar");
+    return false;
+  }
+
+  openDialog(){
+
+    this.dialog.open(FormUsuariosComponent, {
+      width: '40%'
+    });
+
   }
 
 }

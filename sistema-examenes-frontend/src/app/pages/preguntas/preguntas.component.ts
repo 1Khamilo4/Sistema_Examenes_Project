@@ -3,6 +3,9 @@ import { RestService } from 'src/app/services/rest.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatDialog } from '@angular/material/dialog';
+import { FormPreguntasComponent } from 'src/app/components/forms/form-preguntas/form-preguntas.component';
+
 @Component({
   selector: 'app-preguntas',
   templateUrl: './preguntas.component.html',
@@ -17,7 +20,7 @@ export class PreguntasComponent implements OnInit, AfterViewInit{
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor( public api:RestService ){
+  constructor( public api:RestService, public dialog:MatDialog ){
     this.dataSource = new MatTableDataSource();
   }
 
@@ -110,6 +113,7 @@ export class PreguntasComponent implements OnInit, AfterViewInit{
     for(let colums in data){
       this.displayedColumns.push(colums);
     }
+    this.displayedColumns.push("acciones")
 
   }
 
@@ -120,6 +124,22 @@ export class PreguntasComponent implements OnInit, AfterViewInit{
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  btnEditar(){
+    alert("Btn de editar");
+    return false;
+  }
+  btnEliminar(){
+    alert("Btn de Eliminar");
+    return false;
+  }
+
+  openDialog(){
+    this.dialog.open(FormPreguntasComponent,{
+      height: '80%',
+      width: '48%'
+    });
   }
 
 

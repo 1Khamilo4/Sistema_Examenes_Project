@@ -1,0 +1,80 @@
+
+<app-icon-user></app-icon-user>
+<br><br>
+<div class="bootstrap-wrapper">
+    <div class="container">
+
+        <div class="col-md-12">
+                        
+
+            <form [formGroup]="preguntasForm" (ngSubmit)="onSubmit()">
+            
+                <mat-card class="shipping-card" >   
+                    
+                    <mat-card-header>
+                        <div class="container text-center">
+                            <h1 class="text-center">Formulario Preguntas</h1>
+                        </div>
+                    </mat-card-header>
+            
+                    <mat-card-content>
+                        
+                        
+                        <mat-form-field class="full-width" appearance="fill">
+                            <mat-label>Contenido</mat-label>
+                            <textarea matInput placeholder="Contenido" formControlName="contenido"> </textarea>
+                            <mat-error *ngIf="preguntasForm.controls['contenido'].hasError('required')">
+                                El contenido es <strong>REQUERIDO</strong>
+                            </mat-error>
+                        </mat-form-field>                
+                            
+                        <mat-form-field class="full-width" appearance="fill">
+                            <mat-label>Opcion 1 </mat-label>
+                            <textarea matInput placeholder="Opcion 1" formControlName="opcion1"></textarea>
+                            <mat-error *ngIf="preguntasForm.controls['opcion1'].hasError('required')">
+                                La opcion es <strong>REQUERIDA</strong>
+                            </mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field class="full-width" appearance="fill">
+                            <mat-label>Opcion 2 </mat-label>
+                            <textarea matInput placeholder="Opcion 2" formControlName="opcion2"></textarea>
+                            <mat-error *ngIf="preguntasForm.controls['opcion2'].hasError('required')">
+                                La opcion es <strong>REQUERIDA</strong>
+                            </mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field class="full-width" appearance="fill">
+                            <mat-label>Opcion 3 </mat-label>
+                            <textarea matInput placeholder="Opcion 3" formControlName="opcion3"></textarea>
+                            <mat-error *ngIf="preguntasForm.controls['opcion3'].hasError('required')">
+                                La opcion es <strong>REQUERIDA</strong>
+                            </mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field class="full-width" appearance="fill">
+                            <mat-label>Respuesta </mat-label>
+                            <textarea matInput placeholder="Respuesta" formControlName="respuesta"></textarea>
+                            <mat-error *ngIf="preguntasForm.controls['respuesta'].hasError('required')">
+                                La opcion es <strong>REQUERIDA</strong>
+                            </mat-error>
+                        </mat-form-field>
+                            
+                        
+                    </mat-card-content>
+            
+                    <mat-card-actions ><!-- Secciones de botones -->
+
+                        <div class="container text-center">
+                            <button mat-raised-button color="primary" type="submit">Submit</button>
+                        </div>
+                        
+                    </mat-card-actions>
+            
+                </mat-card>
+            </form>
+        </div>
+    </div>
+</div>
+
+<br><br>
