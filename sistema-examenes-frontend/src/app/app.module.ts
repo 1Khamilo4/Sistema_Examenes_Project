@@ -41,6 +41,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 /* Dialog */
 import {MatDialogModule} from '@angular/material/dialog';
+import { SpinnerComponent } from './components/spinner/spinner.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import {MatDialogModule} from '@angular/material/dialog';
     FormExamenesComponent,
     FormPreguntasComponent,
     FormUsuariosComponent,
+    SpinnerComponent,
     
   ],
   imports: [

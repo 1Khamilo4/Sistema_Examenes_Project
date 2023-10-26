@@ -21,8 +21,8 @@ export class FormUsuariosComponent {
 
   onSubmit(): void{
     swal.fire(
-      'Good job!',
-      'You clicked the button!',
+      'Envio satisfactorio!',
+      'Guardado',
       'success'
     )
   }

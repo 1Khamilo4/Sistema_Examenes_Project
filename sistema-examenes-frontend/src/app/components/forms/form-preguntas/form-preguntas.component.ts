@@ -23,10 +23,19 @@ export class FormPreguntasComponent {
   })
 
   onSubmit(){
-    Swal.fire(
-      'Good job!',
-      'You clicked the button!',
-      'success'
-    )
+    if(this.preguntasForm.valid){
+      Swal.fire(
+        'Envio satisfactorio!',
+        'Guardado',
+        'success'
+      )
+
+    }else{
+      Swal.fire(
+        'No se guardaron los datos!',
+        'Error',
+        'error'
+      )
+    }
   }
 }

@@ -6,6 +6,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatDialog } from '@angular/material/dialog';
 import { FormUsuariosComponent } from 'src/app/components/forms/form-usuarios/form-usuarios.component';
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-usuarios',
@@ -16,11 +18,13 @@ import { FormUsuariosComponent } from 'src/app/components/forms/form-usuarios/fo
 export class UsuariosComponent implements OnInit, AfterViewInit{
 
   displayedColumns: string[] = [];/**Se crea una estructura de datos, que va a tener el nombre de las columnas */
+  dataSource : MatTableDataSource<any>;/**Se instancia el dataSource para poder guardar los datos json que se traen desde la peticion GET*/
+  cargando:boolean;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  dataSource : MatTableDataSource<any>;/**Se instancia el dataSource para poder guardar los datos json que se traen desde la peticion GET*/
 
   constructor(public api:RestService, public dialog: MatDialog ){
+    this.cargando = true;
     this.dataSource = new MatTableDataSource();
   }  
   
@@ -35,6 +39,7 @@ export class UsuariosComponent implements OnInit, AfterViewInit{
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+    this.paginator._intl.itemsPerPageLabel = 'registro por pagina';
   }
 
   public get_obtenerUsuario(){
@@ -54,7 +59,7 @@ export class UsuariosComponent implements OnInit, AfterViewInit{
         throw new Error("No hay datos")
       }    
       
-        
+      this.cargando = false;
     })
     
   }
@@ -82,8 +87,9 @@ export class UsuariosComponent implements OnInit, AfterViewInit{
     } )
   }
 
-  public del_usuario(){
-    this.api.Delete("usuarios/","6");
+  public del_usuario(id:string){
+    this.api.Delete("usuarios/",id);
+    return false;
   }
 
   loadTable(data:any){/**Funcion para iterar el objeto que se recive y agregar el nombre de las propiedades a la variable arreglo 
@@ -114,9 +120,41 @@ export class UsuariosComponent implements OnInit, AfterViewInit{
     alert("Btn de editar");
     return false;
   }
-  btnEliminar(){
+  /* btnEliminar(  ){
     alert("Btn de Eliminar");
     return false;
+  } */
+
+  btnEliminar(id: string) {
+
+    Swal.fire({
+      title: 'Esta seguro de eliminar al Usuario?',
+      text: "No podra revertir esta operacion!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, Borrar!'
+    }).then((result) => {
+      
+      if (result.isConfirmed) {
+
+          Swal.fire(
+            'Eliminado!',
+            `El usuario con el id ${id} ha sido eliminado.`,
+            'success'
+          )
+          
+          setInterval(()=>{
+          window.location.reload();
+          }, 2000)
+
+        /* this.del_usuario(id); */
+      }
+    })
+    
+    return false;
+    
   }
 
   openDialog(){

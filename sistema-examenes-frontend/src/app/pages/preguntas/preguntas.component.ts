@@ -5,6 +5,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { FormPreguntasComponent } from 'src/app/components/forms/form-preguntas/form-preguntas.component';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-preguntas',
@@ -16,11 +17,13 @@ export class PreguntasComponent implements OnInit, AfterViewInit{
 
   displayedColumns : string[] = [];
   dataSource : any;
+  cargando : boolean;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
   constructor( public api:RestService, public dialog:MatDialog ){
+    this.cargando = true;
     this.dataSource = new MatTableDataSource();
   }
 
@@ -36,6 +39,7 @@ export class PreguntasComponent implements OnInit, AfterViewInit{
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+    this.paginator._intl.itemsPerPageLabel = 'registro por pagina';
   }
 
   public get_obtenerPregunta(){
@@ -59,7 +63,7 @@ export class PreguntasComponent implements OnInit, AfterViewInit{
       }else{
         throw new Error("No hay datos")
       }    
-      
+      this.cargando = false;
     })
 
   }
@@ -100,9 +104,9 @@ export class PreguntasComponent implements OnInit, AfterViewInit{
 
   }
 
-  public del_pregunta(){
+  public del_pregunta(id:string){
 
-    this.api.Delete("preguntas/", "1")
+    this.api.Delete("preguntas/", id)
 
   }
 
@@ -130,9 +134,37 @@ export class PreguntasComponent implements OnInit, AfterViewInit{
     alert("Btn de editar");
     return false;
   }
-  btnEliminar(){
-    alert("Btn de Eliminar");
+
+  btnEliminar(id:string){
+
+    Swal.fire({
+      title: 'Esta seguro de eliminar la pregunta?',
+      text: "No podra revertir esta operacion!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, Borrar!'
+    }).then((result) => {
+      
+      if (result.isConfirmed) {
+
+          Swal.fire(
+            'Eliminado!',
+            `La pregunta con el id ${id} ha sido eliminado.`,
+            'success'
+          )
+          
+          setInterval(()=>{
+          window.location.reload();
+          }, 2000)
+
+        /* this.del_pregunta(id); */
+      }
+    })
+    
     return false;
+    
   }
 
   openDialog(){

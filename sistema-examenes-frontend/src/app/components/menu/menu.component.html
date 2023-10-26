@@ -1,8 +1,9 @@
-<mat-sidenav-container class="sidenav-container">
+
+<mat-sidenav-container class="sidenav-container" >
   <mat-sidenav #drawer class="sidenav" fixedInViewport
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
-      [opened]="(isHandset$ | async) === false">
+      [opened]="(isHandset$ | async) === false" style="border-radius: 20px;">
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
       <h3><strong>Tablas</strong></h3>
@@ -16,7 +17,7 @@
       
     </mat-nav-list>
   </mat-sidenav>
-  <mat-sidenav-content>
+  <mat-sidenav-content style="background-color: #e9ecef;">
     <mat-toolbar class="color_per">
       <button
         type="button"
@@ -29,7 +30,7 @@
       <span>sistema examenes</span>
     </mat-toolbar>
     <!-- Add Content Here -->
-    <router-outlet></router-outlet>
+    <router-outlet ></router-outlet>
    
   </mat-sidenav-content>
 </mat-sidenav-container>

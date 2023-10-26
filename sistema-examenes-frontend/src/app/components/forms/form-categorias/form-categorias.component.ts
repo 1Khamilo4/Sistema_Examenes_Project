@@ -19,10 +19,21 @@ export class FormCategoriasComponent {
   })
 
   onSubmit(): void{
-    swal.fire(
-      'Good job!',
-      'You clicked the button!',
-      'success'
-    )
+
+    if(this.categoriasForm.valid){
+      swal.fire(
+        'Envio satisfactorio!',
+        'Guardado',
+        'success'
+      )
+
+    }else{
+      swal.fire(
+        'No se guardaron los datos!',
+        'Error',
+        'error'
+      )
+    }
+    
   }
 }

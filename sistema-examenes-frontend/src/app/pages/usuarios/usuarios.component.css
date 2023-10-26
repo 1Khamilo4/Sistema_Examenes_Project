@@ -25,7 +25,7 @@ table {
   }
 
   .editar{
-    color: purple;
+    color: blue;
   }
   .eliminar{
     color: red;
@@ -33,10 +33,13 @@ table {
 
   .texto-tabla{  
     position: absolute;
-    margin-left: 86%;
+    margin-left: 84%;
     margin-top: -60px;
   }
   .letter{
     font-family: 'Kaushan Script', cursive;
     font-size: 210%;
+  }
+  .tabla{
+    padding: 15px;
   }

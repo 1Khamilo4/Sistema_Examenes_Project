@@ -21,11 +21,20 @@ export class FormExamenesComponent {
   })
 
   onSubmit(){
+    if(this.examenesForm.valid){
       Swal.fire(
-        'Good job!',
-        'You clicked the button!',
+        'Envio satisfactorio!',
+        'Guardado',
         'success'
       )
+
+    }else{
+      Swal.fire(
+        'No se guardaron los datos!',
+        'Error',
+        'error'
+      )
+    }
   }
   
 }

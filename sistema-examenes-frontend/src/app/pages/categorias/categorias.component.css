@@ -2,7 +2,7 @@
 
 table {
     width: 100%;
-  }
+}
   
 .mat-mdc-form-field {
     font-size: 14px;
@@ -26,7 +26,7 @@ td, th {
 }
 
 .editar{
-  color: purple;
+  color: blue;
 }
 .eliminar{
   color: red;
@@ -34,10 +34,15 @@ td, th {
 
 .texto-tabla{  
   position: absolute;
-  margin-left: 84%;
+  margin-left: 83%;
   margin-top: -60px;
 }
 .letter{
   font-family: 'Kaushan Script', cursive;
   font-size: 210%;
+}
+
+.tabla{
+  padding: 10px;
+  border-radius: 20px;
 }

@@ -5,6 +5,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { FormExamenesComponent } from 'src/app/components/forms/form-examenes/form-examenes.component';
 import { RestService } from 'src/app/services/rest.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-examenes',
@@ -16,11 +17,13 @@ export class ExamenesComponent implements OnInit, AfterViewInit {
 
   displayedColumns : string[] = [];
   dataSource : any;
+  cargando: boolean;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
   constructor( public api:RestService, public dialog: MatDialog){
+    this.cargando = true
     this.dataSource = new MatTableDataSource();
   }
 
@@ -35,6 +38,7 @@ export class ExamenesComponent implements OnInit, AfterViewInit {
     
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+    this.paginator._intl.itemsPerPageLabel = 'registro por pagina';
 
   }
 
@@ -61,7 +65,7 @@ export class ExamenesComponent implements OnInit, AfterViewInit {
       }else{
         throw new Error("No hay datos");
       }      
-              
+      this.cargando = false;  
     })
   }
 
@@ -97,8 +101,8 @@ export class ExamenesComponent implements OnInit, AfterViewInit {
 
   }
 
-  public del_obtenerExamenes(){
-    this.api.Delete("examenes/", "1");
+  public del_obtenerExamenes( id:string){
+    this.api.Delete("examenes/", id);
   }
 
   loadTable(data:any){
@@ -128,9 +132,37 @@ export class ExamenesComponent implements OnInit, AfterViewInit {
     alert("Btn de editar");
     return false;
   }
-  btnEliminar(){
-    alert("Btn de Eliminar");
+
+  btnEliminar(id:string){
+
+    Swal.fire({
+      title: 'Esta seguro de eliminar el examen?',
+      text: "No podra revertir esta operacion!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, Borrar!'
+    }).then((result) => {
+      
+      if (result.isConfirmed) {
+
+          Swal.fire(
+            'Eliminado!',
+            `El examen con el id ${id} ha sido eliminado.`,
+            'success'
+          )
+          
+          setInterval(()=>{
+          window.location.reload();
+          }, 2000)
+
+        /* this.del_obtenerExamenes(id); */
+      }
+    })
+    
     return false;
+
   }
 
   openDialog(){
