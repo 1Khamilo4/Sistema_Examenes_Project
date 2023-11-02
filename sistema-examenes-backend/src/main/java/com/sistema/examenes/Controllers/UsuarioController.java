@@ -3,12 +3,14 @@ package com.sistema.examenes.Controllers;
 import com.sistema.examenes.Models.Rol;
 import com.sistema.examenes.Models.Usuario;
 import com.sistema.examenes.Models.UsuarioRol;
+import com.sistema.examenes.Respositories.UsuarioRepository;
 import com.sistema.examenes.Services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 @RestController
@@ -18,6 +20,8 @@ public class UsuarioController {
 
     @Autowired
     private UsuarioService usuarioService;
+    @Autowired
+    private UsuarioRepository usuarioRepository;
 
     @PostMapping("/")
     public Usuario guardarUsuario(@RequestBody Usuario usuario) throws Exception{
@@ -44,7 +48,15 @@ public class UsuarioController {
 
     @GetMapping("/")
     public ResponseEntity<?> obtenerUsuarios(){
-        return ResponseEntity.ok(usuarioService.get_obtenerUsuarios());
+        Set<Usuario> usuario = usuarioService.get_obtenerUsuarios();
+        Set<Usuario> usuarios = new HashSet<>();
+        usuario.forEach(user -> {
+            if(user.isEnabled() == true){
+                usuarios.add(user);
+            }
+        });
+        return ResponseEntity.ok(usuarios);
+        //return ResponseEntity.ok(usuarioService.get_obtenerUsuarios());
     }
 
     @GetMapping("/{username}")
@@ -59,7 +71,16 @@ public class UsuarioController {
 
 
     @DeleteMapping("/{usuarioId}")
-    public void eliminarUsuario(@PathVariable("usuarioId") Long usuarioId) throws Exception {
-        usuarioService.del_eliminarUsuario(usuarioId);
+    public Usuario eliminarUsuario(@PathVariable("usuarioId") Long usuarioId) throws Exception {
+
+        Usuario usuario_del = usuarioService.get_obtenerUsuarioById(usuarioId);
+
+        usuario_del.setEnabled(false);
+
+        Usuario usuario_add = usuarioRepository.save(usuario_del);
+
+        return usuario_del;
+        //usuarioService.del_eliminarUsuario(usuarioId);
+        //  return usuarioService.put_actualizarUsuario(usuario_id, usuario);
     }
 }

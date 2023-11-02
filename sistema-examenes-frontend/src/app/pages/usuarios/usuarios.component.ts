@@ -149,7 +149,7 @@ export class UsuariosComponent implements OnInit, AfterViewInit{
           window.location.reload();
           }, 2000)
 
-        /* this.del_usuario(id); */
+        this.del_usuario(id);
       }
     })
     
