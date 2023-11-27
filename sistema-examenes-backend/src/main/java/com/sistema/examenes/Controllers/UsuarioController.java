@@ -51,7 +51,7 @@ public class UsuarioController {
         Set<Usuario> usuario = usuarioService.get_obtenerUsuarios();
         Set<Usuario> usuarios = new HashSet<>();
         usuario.forEach(user -> {
-            if(user.isEnabled() == true){
+            if(user.isEnabled()){
                 usuarios.add(user);
             }
         });
@@ -77,7 +77,7 @@ public class UsuarioController {
 
         usuario_del.setEnabled(false);
 
-        Usuario usuario_add = usuarioRepository.save(usuario_del);
+         usuarioRepository.save(usuario_del);
 
         return usuario_del;
         //usuarioService.del_eliminarUsuario(usuarioId);

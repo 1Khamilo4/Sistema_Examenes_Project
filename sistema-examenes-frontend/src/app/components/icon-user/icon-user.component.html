@@ -1,3 +1,32 @@
 <div class=" container-avatar">
-    <ngx-avatars name="Camilo Ortiz"></ngx-avatars>
+    <button mat-button [matMenuTriggerFor]="menu" >
+        <ngx-avatars name="{{nombre_icon}}">
+            <div >
+                <mat-menu #menu="matMenu" >
+                    <span mat-menu-item>
+                        <span class="material-symbols-outlined">
+                            account_circle
+                        </span>
+                        {{username}}
+                    </span>
+                    <hr>
+                    <span mat-menu-item>
+                        <span class="material-symbols-outlined">
+                            person
+                        </span>
+                        {{full_name}}
+                    </span>
+                    <hr>
+                    <span mat-menu-item>
+                        <span class="material-symbols-outlined">
+                            mail
+                        </span>
+                        {{email}}
+                    </span>
+                </mat-menu>
+            </div>
+            
+        </ngx-avatars>
+    
+    </button>
 </div>

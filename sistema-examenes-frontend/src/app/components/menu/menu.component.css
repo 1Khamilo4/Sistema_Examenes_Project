@@ -18,5 +18,9 @@
 
 .color_per{
   color: white;
-  background-color: #4a5759;
+  background-color: #495057;
+}
+.btn-logout{
+  position: absolute;
+  margin-left: 87%;
 }

@@ -21,7 +21,7 @@ public class Usuario {
     private String email;
     private String telefono;
     private boolean enabled = true;
-    private String perfil;
+    private String perfil = "default.png";
 
     @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER, mappedBy = "usuario")
     @JsonIgnore

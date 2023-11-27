@@ -7,6 +7,8 @@ import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatDialog } from '@angular/material/dialog';
 import { FormUsuariosComponent } from 'src/app/components/forms/form-usuarios/form-usuarios.component';
 import Swal from 'sweetalert2';
+import { UsuarioMV } from 'src/app/Models/usuario-mv';
+import { FormsService } from 'src/app/services/forms.service';
 
 
 @Component({
@@ -20,26 +22,28 @@ export class UsuariosComponent implements OnInit, AfterViewInit{
   displayedColumns: string[] = [];/**Se crea una estructura de datos, que va a tener el nombre de las columnas */
   dataSource : MatTableDataSource<any>;/**Se instancia el dataSource para poder guardar los datos json que se traen desde la peticion GET*/
   cargando:boolean;
+  auth:boolean;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(public api:RestService, public dialog: MatDialog ){
+  constructor(public api:RestService, public dialog: MatDialog, public formsService: FormsService ){
     this.cargando = true;
     this.dataSource = new MatTableDataSource();
   }  
   
   ngOnInit(): void {
 
+    
     this.get_obtenerUsuario();
-    /* this.post_usuario();
-    this.put_usuario();
-    this.del_usuario(); */
+    /* console.log(this.formsService.auth); */
+    
+    
   }
 
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
-    this.paginator._intl.itemsPerPageLabel = 'registro por pagina';
+    /* this.paginator._intl.itemsPerPageLabel = 'registro por pagina'; */
   }
 
   public get_obtenerUsuario(){
@@ -76,7 +80,7 @@ export class UsuariosComponent implements OnInit, AfterViewInit{
     })
   }
 
-  public put_usuario(){
+  /* public put_usuario(){
     this.api.Put("usuarios/","1",{
       apellido:"Zambrano",
       email:"cami@gmail.com",
@@ -85,7 +89,7 @@ export class UsuariosComponent implements OnInit, AfterViewInit{
       telefono:"123445",    
       perfil:"test.png"
     } )
-  }
+  } */
 
   public del_usuario(id:string){
     this.api.Delete("usuarios/",id);
@@ -116,14 +120,19 @@ export class UsuariosComponent implements OnInit, AfterViewInit{
     }
   }
 
-  btnEditar(){
-    alert("Btn de editar");
+  btnEditar(usuario : UsuarioMV){
+
+    this.formsService.title = "Editar";
+    this.formsService.usuario = usuario;
+    this.dialog.open(FormUsuariosComponent, {
+      width: '40%'
+    });
+
+    console.log(usuario.id);
+    
     return false;
   }
-  /* btnEliminar(  ){
-    alert("Btn de Eliminar");
-    return false;
-  } */
+  
 
   btnEliminar(id: string) {
 
@@ -157,8 +166,9 @@ export class UsuariosComponent implements OnInit, AfterViewInit{
     
   }
 
-  openDialog(){
+  crearUsuarioForm(){
 
+    this.formsService.title = "Crear";
     this.dialog.open(FormUsuariosComponent, {
       width: '40%'
     });

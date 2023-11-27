@@ -8,6 +8,7 @@ import { FormCategoriasComponent } from './components/forms/form-categorias/form
 import { FormExamenesComponent } from './components/forms/form-examenes/form-examenes.component';
 import { FormPreguntasComponent } from './components/forms/form-preguntas/form-preguntas.component';
 import { FormUsuariosComponent } from './components/forms/form-usuarios/form-usuarios.component';
+import { FormLoginComponent } from './components/forms/form-login/form-login.component';
 
 const routes: Routes = [
   {
@@ -52,6 +53,13 @@ const routes: Routes = [
     component: FormUsuariosComponent,
     pathMatch:"full"
   },
+
+  {
+    path:"forgot-password",
+    component: FormLoginComponent,
+    pathMatch:"full"
+  },
+  
   
 ];
 

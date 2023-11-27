@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { UsuarioMV } from '../Models/usuario-mv';
 
 @Injectable({
   providedIn: 'root'
@@ -24,16 +25,20 @@ export class RestService {
     
   }
 
-  public Post( controller:String, obj : any ){
-
-    this.api.post( this.url+controller, obj ).toPromise().then( (res)=>{
+  public async Post( controller:String, obj : any ){
+    let result: any;
+    await this.api.post( this.url+controller, obj ).toPromise().then( (res)=>{    
       
-      console.log(res);
+      result = res;
+      console.log("Servicio: ",res);
       
-    } )
+      
+    })
+    
+    return result;
     
   }
-  public Put( controller:String,  id:string, obj:any ){
+  public Put( controller:String,  id: number | string, obj:any ){
 
     this.api.put( this.url+controller+id, obj ).toPromise().then( (res)=>{
       
@@ -50,6 +55,21 @@ export class RestService {
       
     })
     
+  }
+
+  //Login Put
+
+  public async Put_loginPass(controller:string, obj:any ){
+
+    let result: any;
+
+    await this.api.put( this.url+controller+"/"+obj.username+"/"+obj.password, null ).toPromise().then((res)=>{
+        result = res;
+        console.log(result);
+        
+    })
+
+    return result;
   }
   
     

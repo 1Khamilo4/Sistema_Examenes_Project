@@ -1,7 +1,11 @@
 .container-avatar{  
     position: absolute;    
     width: 50px;
-    margin-left: 95%;
-    margin-top: -82px;
+    margin-left: 91%;
+    margin-top: -19px;    
+}
+
+.menu-icon{
     
+    margin-top: -40%;
 }

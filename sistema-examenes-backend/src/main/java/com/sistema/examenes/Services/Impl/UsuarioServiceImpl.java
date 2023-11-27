@@ -43,7 +43,7 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
-    public Usuario put_actualizarUsuario(Long user_id, Usuario usuario) throws Exception{
+    public Usuario put_actualizarUsuario(Long user_id, Usuario up_usuario) throws Exception{
 
         Optional<Usuario> usuarioOptional = usuarioRepository.findById(user_id);
 
@@ -51,10 +51,10 @@ public class UsuarioServiceImpl implements UsuarioService {
             throw new Exception("No existe Usuario");
         }
 
-        usuario.setUsername(usuarioOptional.get().getUsername());
-        usuario.setId(usuarioOptional.get().getId());
+        up_usuario.setUsername(usuarioOptional.get().getUsername());
+        up_usuario.setId(usuarioOptional.get().getId());
 
-        return usuarioRepository.save(usuario);
+        return usuarioRepository.save(up_usuario);
 
 
     }
@@ -65,7 +65,7 @@ public class UsuarioServiceImpl implements UsuarioService {
         Optional<Usuario> usuario = usuarioRepository.findById(username_id);
 
         if(!usuario.isPresent()){
-            throw new Exception("No existe Pregunta");
+            throw new Exception("No existe Usuario");
         }
 
         return usuario.get();

@@ -13,6 +13,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import {MatCardModule} from '@angular/material/card';
+import {MatMenuModule} from '@angular/material/menu';
 
 
 import { UsuariosComponent } from './pages/usuarios/usuarios.component';
@@ -42,6 +43,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 /* Dialog */
 import {MatDialogModule} from '@angular/material/dialog';
 import { SpinnerComponent } from './components/spinner/spinner.component';
+import { LoginComponent } from './pages/login/login.component';
+import { FormLoginComponent } from './components/forms/form-login/form-login.component';
+import { BtnLoginComponent } from './components/btn-login/btn-login.component';
+import { FormForgotPassComponent } from './components/forms/form-forgot-pass/form-forgot-pass.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +62,10 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     FormPreguntasComponent,
     FormUsuariosComponent,
     SpinnerComponent,
+    LoginComponent,
+    FormLoginComponent,
+    BtnLoginComponent,
+    FormForgotPassComponent,
     
   ],
   imports: [
@@ -77,7 +86,8 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     FormsModule,
     ReactiveFormsModule,
     MatCardModule,
-    MatDialogModule
+    MatDialogModule,
+    MatMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]
